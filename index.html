@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>xX Website Builder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+    header, footer {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .hidden {
+      display: none;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .message {
+      background-color: #e6ffe6;
+      border-left: 4px solid #28a745;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #155724;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>xX Website Builder</h1>
+    <p>by Devansh - Professional Website Creation</p>
+  </header>
+
+  <!-- Start Page -->
+  <div class="container" id="landing">
+    <h2>Welcome!</h2>
+    <p>I am Devansh. I make websites for your business. Let's get started!</p>
+    <p>Contact: 9259548311</p>
+    <button onclick="showForm()">Start</button>
+  </div>
+
+  <!-- Form Page -->
+  <div class="container hidden" id="formPage">
+    <h2>Fill Your Website Details</h2>
+    <form id="orderForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" required>
+
+      <label for="phone">Your Phone Number</label>
+      <input type="tel" id="phone" required>
+
+      <label for="business">Your Business Name</label>
+      <input type="text" id="business" required>
+
+      <label for="about">About Website</label>
+      <textarea id="about" rows="4" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+    <div id="confirmationMessage" class="message hidden">
+      xX website builder contact you on WhatsApp personal
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 xX Website Builder. Contact: 9259548311
+  </footer>
+
+  <script>
+    function showForm() {
+      document.getElementById('landing').classList.add('hidden');
+      document.getElementById('formPage').classList.remove('hidden');
+    }
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const business = document.getElementById('business').value.trim();
+      const about = document.getElementById('about').value.trim();
+
+      // Prepare WhatsApp message
+      const message = `*New Website Order*\n\nName: ${name}\nPhone: ${phone}\nBusiness Name: ${business}\nAbout Website: ${about}`;
+      const whatsappNumber = "9259548311";
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      // Open WhatsApp
+      window.open(whatsappLink, '_blank');
+
+      // Show confirmation message on website
+      document.getElementById('orderForm').classList.add('hidden');
+      document.getElementById('confirmationMessage').classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
